@@ -16,7 +16,7 @@ import osu.cse.robobeer.content.MenuContent.MenuItem;
 /**
  * A fragment representing a list of Items.
  * <p/>
- * Activities containing this fragment MUST implement the {@link OnItemListFragmentInteractionListener}
+ * Activities containing this fragment MUST implement the {@link OnMenuListFragmentInteractionListener}
  * interface.
  */
 public class ItemFragment extends Fragment {
@@ -25,7 +25,7 @@ public class ItemFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
-    private OnItemListFragmentInteractionListener mListener;
+    private OnMenuListFragmentInteractionListener mListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -76,8 +76,8 @@ public class ItemFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnItemListFragmentInteractionListener) {
-            mListener = (OnItemListFragmentInteractionListener) context;
+        if (context instanceof OnMenuListFragmentInteractionListener) {
+            mListener = (OnMenuListFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnOrderListFragmentInteractionListener");
@@ -100,8 +100,8 @@ public class ItemFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnItemListFragmentInteractionListener {
+    public interface OnMenuListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(MenuItem item);
+        void onItemListFragmentInteraction(MenuItem item);
     }
 }

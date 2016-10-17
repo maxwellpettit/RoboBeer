@@ -28,7 +28,7 @@ public class OrderContent {
 	
     static {
         MenuItem dummy = new MenuItem("1", "Dummy", "Nothing", "0.00");
-        addItem(dummy);
+        //addItem(dummy);
     }
 
     public static void addItem(MenuItem item) {

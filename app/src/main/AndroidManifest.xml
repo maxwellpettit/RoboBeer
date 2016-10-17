@@ -29,7 +29,6 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -48,7 +47,10 @@
         <activity
             android:name=".StoreLocationsActivity"
             android:label="@string/title_activity_store_locations" />
-        <activity android:name=".MenuActivity" />
+        <activity
+            android:name=".MenuActivity"
+            android:label="Menu"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ItemDetailsActivity"
             android:label="@string/title_activity_item_details"
@@ -56,7 +58,7 @@
         <activity
             android:name=".OrderActivity"
             android:label="@string/title_activity_order"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

@@ -7,20 +7,22 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import osu.cse.robobeer.content.MenuContent.MenuItem;
+import osu.cse.robobeer.OrderItemFragment.OnOrderListFragmentInteractionListener;
+
 
 import java.util.List;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link MenuItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
+ * specified {@link OnOrderListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyOrderItemRecyclerViewAdapter extends RecyclerView.Adapter<MyOrderItemRecyclerViewAdapter.ViewHolder> {
 
     private final List<MenuItem> mValues;
-    private final OrderItemFragment.OnOrderListFragmentInteractionListener mListener;
+    private final OnOrderListFragmentInteractionListener mListener;
 
-    public MyOrderItemRecyclerViewAdapter(List<MenuItem> items, OrderItemFragment.OnOrderListFragmentInteractionListener listener) {
+    public MyOrderItemRecyclerViewAdapter(List<MenuItem> items, OnOrderListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -28,7 +30,7 @@ public class MyOrderItemRecyclerViewAdapter extends RecyclerView.Adapter<MyOrder
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_item, parent, false);
+                .inflate(R.layout.fragment_orderitem, parent, false);
         return new ViewHolder(view);
     }
 
@@ -36,7 +38,7 @@ public class MyOrderItemRecyclerViewAdapter extends RecyclerView.Adapter<MyOrder
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).getName());
-        holder.mContentView.setText(mValues.get(position).getCost());
+        holder.mContentView.setText("$" + mValues.get(position).getCost());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +46,7 @@ public class MyOrderItemRecyclerViewAdapter extends RecyclerView.Adapter<MyOrder
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    mListener.onOrderListFragmentInteraction(holder.mItem);
                 }
             }
         });
