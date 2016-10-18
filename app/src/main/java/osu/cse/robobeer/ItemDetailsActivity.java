@@ -21,7 +21,9 @@ public class ItemDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(mItem.getName());
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TextView nameText = (TextView) findViewById(R.id.item_details_name);
         TextView descriptionText = (TextView) findViewById(R.id.item_details_description);
@@ -40,6 +42,13 @@ public class ItemDetailsActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), MenuActivity.class));
             }
         });
+    }
+
+    public boolean onOptionsItemSelected(android.view.MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), MenuActivity.class);
+        startActivityForResult(myIntent, 0);
+        return true;
+
     }
 
     public static void setItem (MenuItem item) {

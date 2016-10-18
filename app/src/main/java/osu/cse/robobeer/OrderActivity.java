@@ -36,8 +36,9 @@ public class OrderActivity extends AppCompatActivity implements OnOrderListFragm
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Order Sent.", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                OrderContent.clearOrder();
             }
         });
     }

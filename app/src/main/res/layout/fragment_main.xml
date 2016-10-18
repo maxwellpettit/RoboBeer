@@ -15,40 +15,41 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:padding="20dp">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Menu"
             android:id="@+id/menu_button"
             android:layout_gravity="center_horizontal"
             android:nestedScrollingEnabled="false"
-            android:padding="15dp" />
+            android:padding="30dp" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="My Order"
             android:id="@+id/order_button"
             android:layout_gravity="center_horizontal"
             android:nestedScrollingEnabled="false"
-            android:padding="15dp" />
+            android:padding="30dp" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Store Locations"
             android:id="@+id/store_locations_button"
             android:layout_gravity="center_horizontal"
-            android:padding="15dp" />
+            android:padding="30dp" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Company Info"
             android:id="@+id/company_info_button"
             android:layout_gravity="center_horizontal"
-            android:padding="15dp" />
+            android:padding="30dp" />
     </LinearLayout>
 </RelativeLayout>

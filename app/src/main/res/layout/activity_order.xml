@@ -45,7 +45,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/total_cost"
             android:layout_weight="1"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textAlignment="textEnd" />
     </LinearLayout>
 
     </android.support.design.widget.AppBarLayout>
@@ -58,6 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@android:drawable/ic_input_add"
+        app:backgroundTint="?attr/colorPrimaryDark" />
 
 </android.support.design.widget.CoordinatorLayout>
