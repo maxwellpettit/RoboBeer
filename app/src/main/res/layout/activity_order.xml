@@ -46,7 +46,10 @@
             android:id="@+id/total_cost"
             android:layout_weight="1"
             android:textSize="18sp"
-            android:textAlignment="textEnd" />
+            android:textAlignment="textEnd"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginLeft="15dp" />
     </LinearLayout>
 
     </android.support.design.widget.AppBarLayout>
