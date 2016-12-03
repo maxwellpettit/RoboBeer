@@ -1,5 +1,12 @@
 package osu.cse.robobeer.content;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.IgnoreExtraProperties;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +20,7 @@ import java.util.Map;
  */
 public class MenuContent {
 
+    public static DatabaseReference mDatabase;
     /**
      * An array of sample (dummy) items.
      */
@@ -23,61 +31,18 @@ public class MenuContent {
      */
     public static final Map<String, MenuItem> ITEM_MAP = new HashMap<String, MenuItem>();
 
-    static {
-
-        MenuItem item1 = new MenuItem("1", "RoboBeer", "Classic RoboBeer Micro Brew", "4.00");
-        MenuItem item2 = new MenuItem("2", "RoboBeer Lite", "Low Calorie RoboBeer Micro Brew", "4.00");
-        MenuItem item3 = new MenuItem("3", "RIPA", "RoboBeer's IPA Micro Brew", "6.00");
-        MenuItem item4 = new MenuItem("4", "Artificial Int-ALE-ignece", "RoboBeer's Premium Ale", "5.00");
-        MenuItem item5 = new MenuItem("5", "Citric Circuit", "RoboBeer's Original Citrus Brew", "6.00");
-        MenuItem item6 = new MenuItem("6", "Nuts and Bolts", "RoboBeer's Signature Trail Mix", "3.00");
-
-        addItem(item1);
-        addItem(item2);
-        addItem(item3);
-        addItem(item4);
-        addItem(item5);
-        addItem(item6);
+    public static void addItem(String key, MenuItem item) {
+        ITEMS.add(item);
+        ITEM_MAP.put(key,item);
     }
 
-    private static void addItem(MenuItem item) {
-        ITEMS.add(item);
-        ITEM_MAP.put(item.id, item);
+    public static void removeItem(String key, MenuItem item) {
+        ITEMS.remove(item);
+        ITEM_MAP.remove(key);
     }
 
     /**
      * A dummy item representing a piece of content.
      */
-    public static class MenuItem {
-        private final String id;
-        private final String name;
-        private final String content;
-        private final String cost;
 
-        public MenuItem(String id, String name, String content, String cost) {
-            this.id = id;
-            this.name = name;
-            this.content = content;
-            this.cost = cost;
-        }
-
-        @Override
-        public String toString() {
-            return content;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public String getContent() {
-            return content;
-        }
-
-        public String getCost() { return cost; }
-    }
 }

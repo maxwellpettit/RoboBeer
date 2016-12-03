@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import osu.cse.robobeer.content.MenuContent;
-import osu.cse.robobeer.content.MenuContent.MenuItem;
+import osu.cse.robobeer.content.MenuItem;
 
 /**
  * A fragment representing a list of Items.
@@ -68,6 +68,8 @@ public class ItemFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             recyclerView.setAdapter(new MyItemRecyclerViewAdapter(MenuContent.ITEMS, mListener));
+            recyclerView.addItemDecoration(new SpacesItemDecoration(20));
+
         }
         return view;
     }

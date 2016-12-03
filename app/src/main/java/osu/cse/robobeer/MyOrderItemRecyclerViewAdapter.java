@@ -6,10 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import osu.cse.robobeer.content.MenuContent.MenuItem;
+import osu.cse.robobeer.content.MenuItem;
 import osu.cse.robobeer.OrderItemFragment.OnOrderListFragmentInteractionListener;
 
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -21,6 +22,9 @@ public class MyOrderItemRecyclerViewAdapter extends RecyclerView.Adapter<MyOrder
 
     private final List<MenuItem> mValues;
     private final OnOrderListFragmentInteractionListener mListener;
+
+    private static DecimalFormat df2 = new DecimalFormat("0.00");
+
 
     public MyOrderItemRecyclerViewAdapter(List<MenuItem> items, OnOrderListFragmentInteractionListener listener) {
         mValues = items;
@@ -38,7 +42,7 @@ public class MyOrderItemRecyclerViewAdapter extends RecyclerView.Adapter<MyOrder
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).getName());
-        holder.mContentView.setText("$" + mValues.get(position).getCost());
+        holder.mContentView.setText("$" + df2.format(mValues.get(position).getCost()));
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override

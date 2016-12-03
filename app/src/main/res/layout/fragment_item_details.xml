@@ -26,16 +26,39 @@
             android:id="@+id/item_details_name"
             tools:text="Name"
             android:textAppearance="@android:style/TextAppearance.Material.Large"
-            android:padding="15dp" />
+            android:padding="15dp"
+            android:textColor="@android:color/white" />
 
         <TextView
-            android:text="TextView"
+            android:text="Description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_details_description_label"
+            tools:text="Description"
+            android:textAppearance="@android:style/TextAppearance.Material.Small"
+            android:padding="20dp"
+            android:textColor="@android:color/white" />
+
+
+        <TextView
+            android:text="Description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/item_details_description"
             android:textAppearance="@android:style/TextAppearance.Material.Large"
             tools:text="Description"
-            android:padding="15dp" />
+            android:padding="15dp"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:text="Cost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_details_cost_label"
+            tools:text="Cost"
+            android:textAppearance="@android:style/TextAppearance.Material.Small"
+            android:padding="20dp"
+            android:textColor="@android:color/white" />
 
         <TextView
             android:text="TextView"
@@ -44,7 +67,8 @@
             android:id="@+id/item_details_cost"
             android:textAppearance="@android:style/TextAppearance.Material.Large"
             tools:text="Cost"
-            android:padding="15dp" />
+            android:padding="15dp"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 </RelativeLayout>

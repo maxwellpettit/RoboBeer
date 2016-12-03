@@ -12,13 +12,17 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
-import osu.cse.robobeer.content.MenuContent.MenuItem;
+import java.text.DecimalFormat;
+
+import osu.cse.robobeer.content.MenuItem;
 import osu.cse.robobeer.OrderItemFragment.OnOrderListFragmentInteractionListener;
 import osu.cse.robobeer.content.OrderContent;
 
 public class OrderActivity extends AppCompatActivity implements OnOrderListFragmentInteractionListener {
 
     public static Activity mLastActivity;
+    private static DecimalFormat df2 = new DecimalFormat("0.00");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +34,7 @@ public class OrderActivity extends AppCompatActivity implements OnOrderListFragm
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TextView totalText = (TextView) findViewById(R.id.total_cost);
-        totalText.setText(String.format("$" + OrderContent.getCost(), ""));
+        totalText.setText(String.format("$" + df2.format(OrderContent.getCost())));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.submit_order_fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +43,9 @@ public class OrderActivity extends AppCompatActivity implements OnOrderListFragm
                 Snackbar.make(view, "Order Sent.", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 OrderContent.clearOrder();
+
+                Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivityForResult(myIntent, 0);
             }
         });
     }

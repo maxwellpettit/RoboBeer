@@ -1,32 +1,41 @@
 package osu.cse.robobeer;
 
-import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class StoreLocationsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,LocationListener,
-        GoogleApiClient.OnConnectionFailedListener  {
+import android.Manifest;
+
+public class StoreLocationsActivity extends FragmentActivity implements OnMapReadyCallback,
+        GoogleApiClient.ConnectionCallbacks,
+        LocationListener,
+        GoogleApiClient.OnConnectionFailedListener {
 
     private GoogleMap mMap;
-    private GoogleApiClient mGoogleApiClient;
     public static final String TAG = StoreLocationsActivity.class.getSimpleName();
+
+    private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
+
+    private final int MY_PERMISSIONS_FINE_LOCATION = 0;
 
 
     @Override
@@ -64,28 +73,17 @@ public class StoreLocationsActivity extends FragmentActivity implements OnMapRea
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        // Add a marker in Sydney and move the camera
+        LatLng loc1 = new LatLng(39.993254,-83.0071465);
+        mMap.addMarker(new MarkerOptions().position(loc1).title("RoboBeer").snippet("9th Ave. and High St."));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(loc1));
+        CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(loc1, 14);
+        mMap.animateCamera(yourLocation);
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //setUpMapIfNeeded();
-        mGoogleApiClient.connect();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (mGoogleApiClient.isConnected()) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-            mGoogleApiClient.disconnect();
-        }
-    }
-
 
     @Override
     public void onConnected(Bundle bundle) {
-        Log.i(TAG,"Location services connected.");
+        Log.i(TAG, "Location services connected.");
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -94,15 +92,35 @@ public class StoreLocationsActivity extends FragmentActivity implements OnMapRea
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-            return;
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    MY_PERMISSIONS_FINE_LOCATION);
+
         }
         Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         if (location == null) {
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+            Toast.makeText(getApplicationContext(), "Turn on the location on your device for a better map experience.",
+                    Toast.LENGTH_LONG).show();
+            handleNoLocation();
         }
         else {
             handleNewLocation(location);
         }
+    }
+
+    private void handleNoLocation(){
+        Log.d(TAG, "Default location to Student Union");
+        LatLng union = new LatLng(39.997720, -83.008575);
+        MarkerOptions options = new MarkerOptions()
+                .position(union)
+                .title("Ohio State Student Union")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+        mMap.addMarker(options);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(union));
+        CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(union, 14);
+        mMap.animateCamera(yourLocation);
     }
 
     private void handleNewLocation(Location location){
@@ -112,9 +130,12 @@ public class StoreLocationsActivity extends FragmentActivity implements OnMapRea
         LatLng latLng = new LatLng(currentLatitude, currentLongitude);
         MarkerOptions options = new MarkerOptions()
                 .position(latLng)
-                .title("I am here!");
+                .title("I am here!")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
         mMap.addMarker(options);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(latLng, 14);
+        mMap.animateCamera(yourLocation);
     }
 
     @Override
@@ -125,10 +146,31 @@ public class StoreLocationsActivity extends FragmentActivity implements OnMapRea
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         Log.i(TAG, "Location services failed.");
+        Toast.makeText(getApplicationContext(), "Sorry something went wrong. Make sure your device has Google Maps installed and please try using this feature at another time.",
+                Toast.LENGTH_LONG).show();
     }
     @Override
     public void onLocationChanged(Location location) {
         handleNewLocation(location);
 
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_FINE_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+        }
     }
 }

@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import osu.cse.robobeer.content.OrderContent;
-import osu.cse.robobeer.content.MenuContent.MenuItem;
+import osu.cse.robobeer.content.MenuItem;
 
 /**
  * A fragment representing a list of Items.
@@ -68,6 +68,7 @@ public class OrderItemFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             recyclerView.setAdapter(new MyOrderItemRecyclerViewAdapter(OrderContent.ITEMS, mListener));
+            recyclerView.addItemDecoration(new SpacesItemDecoration(20));
         }
         return view;
     }

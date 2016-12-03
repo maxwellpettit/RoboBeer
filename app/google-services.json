@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "233183205879",
+    "firebase_url": "https://robobeer-b7404.firebaseio.com",
+    "project_id": "robobeer-b7404",
+    "storage_bucket": "robobeer-b7404.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:233183205879:android:e21a7c6fb73ee405",
+        "android_client_info": {
+          "package_name": "osu.cse.robobeer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "233183205879-rpu494o7kaknud1mg3ed0nrno8fgk01o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAObEK5ReujoYRdTvI7dXS57ATPG8eoAWY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

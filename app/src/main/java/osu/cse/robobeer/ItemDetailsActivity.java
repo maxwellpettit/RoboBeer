@@ -9,12 +9,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
-import osu.cse.robobeer.content.MenuContent.MenuItem;
+import java.text.DecimalFormat;
+
+import osu.cse.robobeer.content.MenuItem;
 import osu.cse.robobeer.content.OrderContent;
 
 public class ItemDetailsActivity extends AppCompatActivity {
 
     private static MenuItem mItem;
+
+    private static DecimalFormat df2 = new DecimalFormat("0.00");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +36,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
 
         nameText.setText(mItem.getName());
         descriptionText.setText(mItem.getContent());
-        costText.setText("$" + mItem.getCost());
+        costText.setText("$" + df2.format(mItem.getCost()));
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_to_order_fab);

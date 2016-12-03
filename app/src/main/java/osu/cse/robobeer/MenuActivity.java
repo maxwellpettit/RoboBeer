@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
-import osu.cse.robobeer.content.MenuContent.MenuItem;
+import osu.cse.robobeer.content.MenuItem;
 import osu.cse.robobeer.ItemFragment.OnMenuListFragmentInteractionListener;
 
 
@@ -17,11 +17,14 @@ public class MenuActivity extends AppCompatActivity implements OnMenuListFragmen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_menu);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.menu_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
     }
 

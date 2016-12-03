@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:id="@+id/menu_list"
-    tools:context="osu.cse.robobeer.MenuActivity">
+    tools:context="osu.cse.robobeer.MenuActivity"
+    android:background="@color/wallet_dim_foreground_inverse_holo_dark">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
