@@ -9,6 +9,9 @@
     tools:context="osu.cse.robobeer.MainActivityFragment"
     tools:showIn="@layout/activity_main">
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
     <LinearLayout
         android:orientation="vertical"
@@ -52,4 +55,5 @@
             android:layout_gravity="center_horizontal"
             android:padding="30dp" />
     </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

@@ -3,6 +3,7 @@ package osu.cse.robobeer;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -44,8 +45,16 @@ public class OrderActivity extends AppCompatActivity implements OnOrderListFragm
                         .setAction("Action", null).show();
                 OrderContent.clearOrder();
 
-                Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivityForResult(myIntent, 0);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivityForResult(myIntent, 0);
+                    }
+                }, 2000);
+
             }
         });
     }

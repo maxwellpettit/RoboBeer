@@ -11,6 +11,9 @@
     tools:context="osu.cse.robobeer.ItemDetailsActivityFragment"
     tools:showIn="@layout/activity_item_details">
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
     <LinearLayout
         android:orientation="vertical"
@@ -71,4 +74,5 @@
             android:textColor="@android:color/white" />
 
     </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
