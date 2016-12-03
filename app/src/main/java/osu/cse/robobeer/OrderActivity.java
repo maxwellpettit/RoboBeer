@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
+import java.util.List;
 
 import osu.cse.robobeer.content.MenuItem;
 import osu.cse.robobeer.OrderItemFragment.OnOrderListFragmentInteractionListener;
@@ -23,6 +25,8 @@ public class OrderActivity extends AppCompatActivity implements OnOrderListFragm
 
     public static Activity mLastActivity;
     private static DecimalFormat df2 = new DecimalFormat("0.00");
+
+    RecyclerView mRecyclerView;
 
 
     @Override
@@ -57,6 +61,8 @@ public class OrderActivity extends AppCompatActivity implements OnOrderListFragm
 
             }
         });
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.order_recycler_view);
     }
 
     public boolean onOptionsItemSelected(android.view.MenuItem item){
@@ -67,6 +73,11 @@ public class OrderActivity extends AppCompatActivity implements OnOrderListFragm
     }
 
     public void onOrderListFragmentInteraction(MenuItem item) {
-        System.out.println("Item: " + item.getName());
+
+        //List<MenuItem> copy = OrderContent.ITEMS;
+        OrderContent.removeItem(item);
+        Intent myIntent = new Intent(getApplicationContext(), OrderActivity.class);
+        startActivityForResult(myIntent, 0);
+
     }
 }

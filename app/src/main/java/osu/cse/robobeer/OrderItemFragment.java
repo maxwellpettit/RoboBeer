@@ -26,6 +26,7 @@ public class OrderItemFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnOrderListFragmentInteractionListener mListener;
+    public MyOrderItemRecyclerViewAdapter mAdapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -67,7 +68,10 @@ public class OrderItemFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyOrderItemRecyclerViewAdapter(OrderContent.ITEMS, mListener));
+
+            mAdapter = new MyOrderItemRecyclerViewAdapter(OrderContent.ITEMS, mListener);
+
+            recyclerView.setAdapter(mAdapter);
             recyclerView.addItemDecoration(new SpacesItemDecoration(20));
         }
         return view;

@@ -8,9 +8,9 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
 public class MenuItem {
-    public String name;
-    public String content;
-    public double cost;
+    private String name;
+    private String content;
+    private double cost;
 
     public MenuItem() {
 

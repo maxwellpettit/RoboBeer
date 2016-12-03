@@ -22,7 +22,6 @@ public class OrderContent {
     /**
      * A map of sample (dummy) items, by ID.
      */
-    public static final Map<String, MenuItem> ITEM_MAP = new HashMap<String, MenuItem>();
 
 	private static double mCost = 0.0;
 
@@ -40,9 +39,13 @@ public class OrderContent {
 	public static void clearOrder() {
 	
 		ITEMS.clear();
-		ITEM_MAP.clear();
 		mCost = 0.0;
 	}
+
+    public static void removeItem(MenuItem item) {
+        ITEMS.remove(item);
+        mCost -= item.getCost();
+    }
 
     public static double getCost() {
         return mCost;

@@ -44,14 +44,15 @@ public class MyOrderItemRecyclerViewAdapter extends RecyclerView.Adapter<MyOrder
         holder.mIdView.setText(mValues.get(position).getName());
         holder.mContentView.setText("$" + df2.format(mValues.get(position).getCost()));
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
+        holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View v) {
+            public boolean onLongClick(View v) {
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
                     mListener.onOrderListFragmentInteraction(holder.mItem);
                 }
+                return true;
             }
         });
     }
